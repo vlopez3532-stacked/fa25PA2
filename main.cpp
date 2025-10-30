@@ -119,8 +119,32 @@ int buildEncodingTree(int nextFree) {
 void generateCodes(int root, string codes[]) {
     // TODO:
     // Use stack<pair<int, string>> to simulate DFS traversal.
+    stack<pair<int, string>> trav_stack;
+    trav_stack.push(make_pair(root, ""));
     // Left edge adds '0', right edge adds '1'.
     // Record code when a leaf node is reached.
+    while (!trav_stack.empty()) {
+        int curr_node = trav_stack.top().first;
+        string curr_code = trav_stack.top().second;
+        trav_stack.pop();
+
+        // checks if leaf
+        if (leftArr[curr_node] == -1 && rightArr[curr_node] == -1) {
+            // save the code
+            char ch = charArr[curr_node];
+            codes[ch - 'a'] = curr_code;
+        }
+        else {
+            // push right dear child append 1
+            if (rightArr[curr_node] != -1) {
+                trav_stack.push({rightArr[curr_node], curr_code + "1"});
+            }
+            // push left dear child append 0
+            if (leftArr[curr_node] != -1) {
+                trav_stack.push({leftArr[curr_node],curr_code + "0"});
+            }
+        }
+    }
 }
 
 // Step 5: Print table and encoded message
