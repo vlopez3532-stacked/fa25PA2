@@ -89,7 +89,6 @@ int createLeafNodes(int freq[]) {
 
 // Step 3: Build the encoding tree using heap operations
 int buildEncodingTree(int nextFree) {
-    // TODO:
     // 1. Create a MinHeap object.
     MinHeap min_heap_obj;
     // 2. Push all leaf node indices into the heap.
@@ -117,7 +116,6 @@ int buildEncodingTree(int nextFree) {
 
 // Step 4: Use an STL stack to generate codes
 void generateCodes(int root, string codes[]) {
-    // TODO:
     // Use stack<pair<int, string>> to simulate DFS traversal.
     stack<pair<int, string>> trav_stack;
     trav_stack.push(make_pair(root, ""));
